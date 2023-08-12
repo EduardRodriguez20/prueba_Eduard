@@ -9,7 +9,6 @@ def verify_Input(mensaje):
         data = input(mensaje)
     return data
 
-
 def add_student():
     print("INGRESO DE ESTUDIANTE")
     code = verify_Input("Ingrese la ID del estudiante: ")
