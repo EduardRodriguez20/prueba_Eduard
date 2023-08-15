@@ -1,0 +1,11 @@
+{
+    "users":[
+        {
+            "full_name": "Eduard",
+            "email": "andres@gmail.com",
+            "id": "123",
+            "total_packages": 100,
+            "total_price": 2500
+        }
+    ]
+}
