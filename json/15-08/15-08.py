@@ -109,4 +109,17 @@ def delete():
     print(pets)
     input("Los datos han sido eliminados correctamente")
 
+def main_menu():
+    while True:
+        os.system("clear")
+        print("Administracion de Mascotas\n")
+        print("\n1. Mostrar datos\n2. Añadir mascota\n3. Mascotas por tipo\n4. Actualizar datos\n5. Eliminar mascota\n6. Salir")
+        options = {1:show_data, 2:add_pet, 3:show_pets_type, 4:update_data, 5:delete}
+        option = input("opcion: ")
+        if option == 6:
+            print("Gracias por usar el programa")
+        os.system("clear")
+        options[option]()
+        
+
 show_data()
