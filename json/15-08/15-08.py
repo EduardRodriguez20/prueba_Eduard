@@ -1,13 +1,13 @@
 import json, os
 
 def read_data():
-    with open("json/15-08/PetShopping.json", "r", encoding="UTF-8") as x:
+    with open("a/PetShopping.json", "r", encoding="UTF-8") as x:
         data = json.load(x)
         return data
 
 def write_data(data):
-    with open("json/15-08/PetShopping.json", "w", encoding="UTF-8") as x:
-        json.dump(data,x)
+    with open("a/PetShopping.json", "w", encoding="UTF-8") as x:
+        json.dump(data,x, indent=4)
         print("Datos guardados en disco!")
 
 def show_data():
@@ -39,7 +39,7 @@ def add_pet():
             option = int(input("Quieres ingresar otro servicio?\n1. SI\n2. NO\n-> "))
             if option == 2:
                 break
-        pets["pets"].append({"tipo": kind.upper(), "raza": race.upper(), "talla": size.upper(), "precio": price, "servicios": services})
+        pets["pets"].append({"tipo": kind.title(), "raza": race.title(), "talla": size.title(), "precio": price, "servicios": services})
         print("\nDatos completos ingresados\nQuieres ingresar otra mascota? ")
         option = int(input("\n1. SI\n2. NO\n-> "))
         if option == 2:
@@ -86,15 +86,15 @@ def update_data():
     if option == 1:
         race = input("Ingrese la nueva raza: ")
         pets["pets"][indice-1]["raza"] = race
-    if option == 1:
+    if option == 2:
         size = input("Ingrese la nueva talla: ")
         pets["pets"][indice-1]["talla"] = size
-    if option == 1:
-        price = int(input("Ingrese el nueva precio: "))
+    if option == 3:
+        price = int(input("Ingrese el nuevo precio: "))
         pets["pets"][indice-1]["precio"] = price
     else:
         return input("Volveras al menu principal") 
-    write_data(pets)   
+    write_data(pets)
 
 def delete():
     pets = read_data()
@@ -106,7 +106,7 @@ def delete():
         counter += 1
     indice = int(input("Opcion: "))
     pets["pets"].pop(indice-1)
-    print(pets)
+    write_data(pets)
     input("Los datos han sido eliminados correctamente")
 
 def main_menu():
@@ -115,11 +115,11 @@ def main_menu():
         print("Administracion de Mascotas\n")
         print("\n1. Mostrar datos\n2. Añadir mascota\n3. Mascotas por tipo\n4. Actualizar datos\n5. Eliminar mascota\n6. Salir")
         options = {1:show_data, 2:add_pet, 3:show_pets_type, 4:update_data, 5:delete}
-        option = input("opcion: ")
+        option = int(input("opcion: "))
         if option == 6:
             print("Gracias por usar el programa")
+            break
         os.system("clear")
         options[option]()
         
-
-show_data()
+main_menu()
